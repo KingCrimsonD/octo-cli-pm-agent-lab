@@ -88,13 +88,27 @@ def issue_fingerprint(issue: dict) -> str:
     return hashlib.sha256(json.dumps(payload, sort_keys=True, ensure_ascii=False).encode()).hexdigest()
 
 
+REPORT_EVENTS = {
+    "new-issue",
+    "pm-needs-prd",
+    "pm-prd-created",
+    "pm-review-passed",
+    "pm-review-failed",
+    "status-in-review",
+    "status-changes-requested",
+    "status-ready",
+    "status-need-human",
+    "closed-wontfix",
+}
+
+
 def classify_event(issue: dict, previous: dict | None) -> list[str]:
     labels = {l.get("name", "") for l in issue.get("labels", [])}
+    prev_labels = set(previous.get("labels", [])) if previous else set()
     events = []
     if previous is None:
         events.append("new-issue")
     else:
-        prev_labels = set(previous.get("labels", []))
         if issue.get("title") != previous.get("title"):
             events.append("title-changed")
         if issue.get("state") != previous.get("state"):
@@ -105,12 +119,24 @@ def classify_event(issue: dict, previous: dict | None) -> list[str]:
             events.append("comments-changed")
         if issue.get("updated_at") != previous.get("updated_at") and not events:
             events.append("body-or-metadata-changed")
-    if "status:changes-requested" in labels:
-        events.append("status-changes-requested")
-    if "pm:needs-prd" in labels:
-        events.append("pm-needs-prd")
-    if "pm:review-failed" in labels:
-        events.append("pm-review-failed")
+
+    # Emit explicit PM/status milestones only when newly observed. These are the
+    # events that can justify a group report; generic labels-changed remains an
+    # audit event but is intentionally quiet.
+    label_events = {
+        "pm:needs-prd": "pm-needs-prd",
+        "pm:prd-created": "pm-prd-created",
+        "pm:review-passed": "pm-review-passed",
+        "pm:review-failed": "pm-review-failed",
+        "status:in-review": "status-in-review",
+        "status:changes-requested": "status-changes-requested",
+        "status:ready": "status-ready",
+        "status:need-human": "status-need-human",
+    }
+    for label, event in label_events.items():
+        if label in labels and label not in prev_labels:
+            events.append(event)
+
     if issue.get("state") == "closed" and issue.get("state_reason") == "not_planned":
         events.append("closed-wontfix")
     return sorted(set(events))
@@ -157,7 +183,7 @@ def main() -> int:
                 if processed.get(key):
                     continue
                 processed[key] = True
-                event = {"ts": now(), "repo": repo, "event_key": key, "event": ev, "issue_number": issue.get("number"), "title": issue.get("title"), "url": issue.get("html_url"), "labels": labels, "state": issue.get("state"), "state_reason": issue.get("state_reason"), "group_report_needed": ev in {"closed-wontfix", "status-changes-requested", "pm-needs-prd", "pm-review-failed", "new-issue"}}
+                event = {"ts": now(), "repo": repo, "event_key": key, "event": ev, "issue_number": issue.get("number"), "title": issue.get("title"), "url": issue.get("html_url"), "labels": labels, "state": issue.get("state"), "state_reason": issue.get("state_reason"), "group_report_needed": ev in REPORT_EVENTS}
                 append_jsonl(SYNC_LOG, event)
                 emitted += 1
         save_json(SNAPSHOT, new_snapshot)

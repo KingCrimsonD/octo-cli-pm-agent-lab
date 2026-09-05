@@ -9,7 +9,10 @@ Agent A 收到需求后创建 issue，至少包含：
 - 期望目标。
 - 影响用户。
 - 来源。
-- 初始 label：`type:feature`、`status:triage`、`pm:needs-prd`。
+- 初始 label 取决于信息完整度：
+  - 信息不足、诉求可能是 Docs/UX 或 Feature 多种解释时：`type:feature` 或 `type:docs` + `status:need-info`，不加 `pm:needs-prd`。
+  - 只完成初步归档、尚未接受处理时：`type:feature` + `status:triage`。
+  - 信息足够且可进入 PRD 时：`type:feature` + `status:accepted` + `pm:needs-prd`。
 
 ## 2. PRD 生成
 

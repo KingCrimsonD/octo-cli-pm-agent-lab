@@ -1,20 +1,75 @@
 {
   "1": {
     "assignees": [],
-    "comments": 1,
-    "fingerprint": "1187a74e0f4af69965e423bf9cdaca2e921dc7b910c8b4dd989d3716b2c52fae",
+    "comments": 3,
+    "fingerprint": "859083c76ab52fd3585376a786fc9c1e7cb5d0c8ae199b5181c494964cb451c2",
     "html_url": "https://github.com/KingCrimsonD/octo-cli-pm-agent-lab/issues/1",
     "labels": [
       "pm:prd-created",
+      "pm:review-failed",
       "priority:P2",
       "source:agent",
-      "status:prd-draft",
-      "type:feature"
+      "status:changes-requested",
+      "type:feature",
+      "type:review"
     ],
     "number": 1,
     "state": "open",
     "state_reason": null,
     "title": "[考试联调] page-all 长任务希望有用户可感知的进度提示",
-    "updated_at": "2026-09-05T07:38:52Z"
+    "updated_at": "2026-09-05T07:44:17Z"
+  },
+  "2": {
+    "assignees": [],
+    "comments": 3,
+    "fingerprint": "42d1d9b6fbc67fd18ceb65f49a4156868e203ea92a2129eff211bbfccd4ff74b",
+    "html_url": "https://github.com/KingCrimsonD/octo-cli-pm-agent-lab/issues/2",
+    "labels": [
+      "pm:prd-created",
+      "pm:review-passed",
+      "priority:P2",
+      "source:examiner",
+      "status:in-review",
+      "type:feature"
+    ],
+    "number": 2,
+    "state": "open",
+    "state_reason": null,
+    "title": "[Feature] 分页列表接口希望更容易一次获取全量数据",
+    "updated_at": "2026-09-05T08:27:20Z"
+  },
+  "3": {
+    "assignees": [],
+    "comments": 1,
+    "fingerprint": "fa0b1ae886c3005509910d212228d794e2d39e8f38170b6242697caa4d99715f",
+    "html_url": "https://github.com/KingCrimsonD/octo-cli-pm-agent-lab/issues/3",
+    "labels": [
+      "priority:P2",
+      "source:examiner",
+      "status:need-info",
+      "type:feature"
+    ],
+    "number": 3,
+    "state": "open",
+    "state_reason": null,
+    "title": "[Feature] 增加更直观的 CSV 导出入口",
+    "updated_at": "2026-09-05T08:29:01Z"
+  },
+  "4": {
+    "assignees": [],
+    "comments": 0,
+    "fingerprint": "024a7f0f39f0c3ab1cd46a44fd2b6bf6579055f499e41cd82344feef562cb59f",
+    "html_url": "https://github.com/KingCrimsonD/octo-cli-pm-agent-lab/issues/4",
+    "labels": [
+      "priority:P3",
+      "source:examiner",
+      "status:need-info",
+      "type:docs"
+    ],
+    "number": 4,
+    "state": "open",
+    "state_reason": null,
+    "title": "[Docs/UX] service 调用参数较多，需改进入门指引和参数说明",
+    "updated_at": "2026-09-05T08:27:22Z"
   }
 }

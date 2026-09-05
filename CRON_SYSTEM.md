@@ -29,9 +29,13 @@
 
 - 新需求已收单。
 - PRD 已生成。
-- Review 已通过或打回。
-- 需要人工确认。
+- 进入 Review：`status:in-review`。
+- Review 已通过：`pm:review-passed` / `status:ready`。
+- Review 被打回：`pm:review-failed` / `status:changes-requested`。
+- 需要人工确认：`status:need-human`。
 - 安全风险已拦截。
+
+扫描脚本应把上述关键 PM / 状态里程碑写入 `sync-events.jsonl`，并将 `group_report_needed` 标为 `true`。普通 `labels-changed`、`comments-changed` 只做审计记录，除非同时命中上述关键里程碑，否则不主动回群。
 
 ## 5. 禁止汇报
 
