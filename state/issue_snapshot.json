@@ -1,1 +1,20 @@
-{}
+{
+  "1": {
+    "assignees": [],
+    "comments": 1,
+    "fingerprint": "1187a74e0f4af69965e423bf9cdaca2e921dc7b910c8b4dd989d3716b2c52fae",
+    "html_url": "https://github.com/KingCrimsonD/octo-cli-pm-agent-lab/issues/1",
+    "labels": [
+      "pm:prd-created",
+      "priority:P2",
+      "source:agent",
+      "status:prd-draft",
+      "type:feature"
+    ],
+    "number": 1,
+    "state": "open",
+    "state_reason": null,
+    "title": "[考试联调] page-all 长任务希望有用户可感知的进度提示",
+    "updated_at": "2026-09-05T07:38:52Z"
+  }
+}
