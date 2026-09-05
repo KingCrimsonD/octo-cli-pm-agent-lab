@@ -7,4 +7,6 @@ if [ -f .env ]; then
   . ./.env
   set +a
 fi
-python3 scripts/scan_github_issues.py >> logs/cron_stdout.log 2>> logs/cron_stderr.log
+: "${DEMAND_REPO:=KingCrimsonD/octo-cli-pm-agent-lab}"
+export DEMAND_REPO
+python3 scripts/scan_github_issues.py

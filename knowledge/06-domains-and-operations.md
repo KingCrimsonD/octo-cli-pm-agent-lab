@@ -49,7 +49,7 @@ root command 添加 `schema`、`version`、`api`、`config`、`skills`、`auth`�
 | `html` | 21 | 可用 | HTML 文档 publish/draft/version/share/asset/comment/element 等 | 来源: internal/registry/specs/html.json#L15-L1056 |
 | `loop` | 136 | 可用 | Fleet control plane：tasks、executions、experts、workspaces、runtimes、projects、skills 等 | 来源: internal/registry/specs/loop.json#L105-L6478 |
 | `mail` | 18 | 可用 | mailbox/message/thread/draft/address 等 mail 操作 | 来源: internal/registry/specs/mail.json#L15-L291 |
-| `marketplace` | 45 | 可用 | marketplace expert/squad/category/tag/upload/skill/mcp 等 | 来源: internal/registry/specs/marketplace.json#L20-L4251 |
+| `marketplace` | 25 | 可用 | marketplace plugin/category/tag/upload/placement 等统一插件市场操作；legacy expert/squad/mcp/skill 独立端点已由统一模型替代 | 来源: internal/registry/specs/marketplace.json#L17-L1841 |
 | `matter` | 14 | disabled | todos/tasks，当前 withheld | 来源: internal/registry/specs/matter.json#L9-L298 |
 | `message` | 10 | 可用 | send/edit/sync/read-receipt/search/files/media/around/groups | 来源: internal/registry/specs/message.json#L14-L329 |
 | `summary` | 4 | disabled | summary create/list/get/result，当前 withheld | 来源: internal/registry/specs/summary.json#L11-L226 |
